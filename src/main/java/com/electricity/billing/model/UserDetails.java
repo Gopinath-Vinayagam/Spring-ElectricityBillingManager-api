@@ -1,5 +1,7 @@
-package com.gopinath.ElectricityBillingManager.model;
+package com.electricity.billing.model;
 
+import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,29 +18,27 @@ import lombok.ToString;
 public class UserDetails {
 	@Id
 	@Column(name = "customer_id")
-	public Long ConsumerId;
+	public Long consumerId;
 
 	@Column(name = "customer_name")
-	public String FullName;
-
-	@Column(name = "user_name")
-	public String UserName;
+	public String fullName;
 
 	@Column(name = "phone_no")
-	public String MobileNumber;
+	public String mobileNumber;
 
 	@Column(name = "user_Age")
-	public String DateOfBirth;
+	public LocalDate dateOfBirth;
 
 	@Column(name = "address")
-	public String Address;
+	public String address;
 
 	@Column(name = "consumer_Type")
-	public String ConsumerType;
+	public String consumerType;
 
 	@Column(name = "email_id")
-	public String EmailId;
+	public String emailId;
 
-	@Column(name = "PASSWORD")
-	public String Password;
+	@Column(name = "user_password")
+	public String password;
+
 }

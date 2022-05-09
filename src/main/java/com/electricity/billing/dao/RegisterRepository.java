@@ -1,22 +1,18 @@
-package com.gopinath.ElectricityBillingManager.DAO;
-
-//import java.util.List;
-//import java.util.Optional;
+package com.electricity.billing.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-
-import com.gopinath.ElectricityBillingManager.model.UserDetails;
+import com.electricity.billing.model.RegisterUserDetail;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserDetails, Integer> {
+public interface RegisterRepository extends JpaRepository<RegisterUserDetail, Integer> {
 	
-	UserDetails save(UserDetails user);
+	
+	RegisterUserDetail save(RegisterUserDetail User);
 	
 	
 	/*@Transactional
@@ -24,5 +20,3 @@ public interface UserRepository extends JpaRepository<UserDetails, Integer> {
 	@Query("update User u set u.PASSWORD = :Password where u.customer_id=:ConsumerId")
 	void changePassword(@Param("ConsumerId") Integer ConsumerId, @Param("Password") String Password);*/
 }
-
-
