@@ -1,9 +1,12 @@
 package com.electricity.billing.controller;
 
+import java.net.http.HttpResponse;
 import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -16,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.electricity.billing.dao.RegisterRepository;
 import com.electricity.billing.dao.UserRepository;
-
+import com.electricity.billing.dto.MessageDTO;
 import com.electricity.billing.model.RegisterUserDetail;
 import com.electricity.billing.model.UserDetails;
 import com.electricity.billing.service.UserService;
@@ -62,9 +65,10 @@ public class UserController {
 	
 	
 	@PostMapping("login")
-	public Object Userlogin(@RequestBody UserDetails user) {
-		System.out.println(user);
-		return service.Login(user);
+	public  ResponseEntity<?> Userlogin(@RequestBody UserDetails user) throws Exception {
+		UserDetails result = service.Login(user);
+		
+		return new ResponseEntity<>(result ,HttpStatus.OK);
 		
 
 	}

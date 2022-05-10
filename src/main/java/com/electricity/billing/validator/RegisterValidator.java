@@ -40,22 +40,21 @@ public class RegisterValidator {
 	//@Configuration
 	
 	//u.getUserMailId().equals( user.getUserMailId()) || u.getUserPass().equals(user.getUserPass())
-	    public String emailPasswordValidation(List<UserDetails> m, UserDetails user) {
+	    public UserDetails emailPasswordValidation(List<UserDetails> m, UserDetails user) throws Exception {
 	        String ans = null;
+	        UserDetails userDetails = new UserDetails();
 	        for (UserDetails u : m) {
 //	        	System.out.println(u.getEmailId() + user.getEmailId());
 //	        	System.out.println(u.getEmailId() .equals( user.getEmailId()));
 	            if(u.getEmailId() .equals(user.getEmailId())) {
 	                
-	                ans = "success";
-	                break;
+	            	userDetails = u;
+	                
 	            }
-	            else {
-	            	log.info("email id not present");
-	                ans = "invalid credential";
-	            }
+	           
 	        }
-	        return ans;
+			return userDetails;
+	        
 	    }
 	    public void loginFieldValidation(UserDetails user) throws Exception {
 	        long consumerid=user.getConsumerId();

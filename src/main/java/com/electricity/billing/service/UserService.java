@@ -39,24 +39,27 @@ public class UserService {
 		return ans;
 	}
 
-	public Object getEmailAndPass(UserDetails user) {
-
-		String ans = null;
+	public Object getEmailAndPass(UserDetails user) throws Exception {
+		UserDetails ans = null;
+		String res = null;
 		try {
 			List<UserDetails> m = userRepository.findAll();
 			if (m != null) {
 				ans = validation.emailPasswordValidation(m, user);
+				if(ans == null) {
+					throw new ValidatorException("in valid login crede");
+				}
 			} else {
 				throw new SQLException("records not found");
 			}
-		} catch (RuntimeException e) {
+		} catch (ValidatorException e) {
 			log.info("email id and password verfication is unsuccess");
-			ans = "unsuccess";
+			res = "unsuccess";
 		} catch (SQLException e) {
 			log.warn("records not found");
-			ans = e.getMessage();
+			res = e.getMessage();
 		}
-		return ans;
+		return res;
 	}
 
 	
@@ -64,24 +67,27 @@ public class UserService {
 	
 	//login
 
-	public Object Login(UserDetails user) {
-		String ans = null;
-		
+	public UserDetails Login(UserDetails user) throws Exception {
+		UserDetails ans = null;
+		String res = null;
 		try {
 			List<UserDetails> m = userRepository.findAll();
 			if (m != null) {
 				ans = validation.emailPasswordValidation(m, user);
+				if(ans == null) {
+					throw new ValidatorException("in valid login crede");
+				}
 			} else {
 				throw new SQLException("records not found");
 			}
-		} catch (RuntimeException e) {
+		} catch (ValidatorException e) {
 			log.info("email id and password verfication is unsuccess");
-			ans = "unsuccess";
+			res = "unsuccess";
 		} catch (SQLException e) {
 			log.warn("records not found");
-			ans = e.getMessage();
+			res = e.getMessage();
 		}
-		return ans;
+		return  ans;
 	}
 
 	
